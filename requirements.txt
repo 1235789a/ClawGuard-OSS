@@ -1,0 +1,8 @@
+# ClawGuard OSS - 开源版依赖项
+# 极简依赖，零配置运行
+
+fastapi==0.104.1
+uvicorn==0.24.0
+httpx==0.25.1
+colorama==0.4.6
+requests==2.31.0
