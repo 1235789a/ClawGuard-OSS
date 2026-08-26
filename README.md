@@ -1,285 +1,101 @@
-# 🛡️ ClawGuard OSS - AI Security Gateway
+# LocalBiz Copilot V1
 
-<div align="center">
+`Your 3-minute daily marketing assistant for local businesses.`
 
-![ClawGuard Logo](https://img.shields.io/badge/ClawGuard-OSS-00D9FF?style=for-the-badge&logo=shield&logoColor=white)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/downloads/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+LocalBiz Copilot is an anonymous-first mobile-first web app for independent local businesses. It turns one website URL into a small business profile, three practical daily actions, review reply help, social post drafts, a transparent growth snapshot, and an optional hand-off to MultiHub GEO.
 
-**极简 | 炫酷 | 零配置 | 高性能 | 安全**
+## What is included
 
-[English](#english) | [中文](#中文)
+- Website analysis with a local preview fallback and a Cloudflare Pages server analyzer.
+- Daily `Today` workspace with exactly three task cards, completion, skip, refresh and history.
+- Review reply assistant with responsible wording rules.
+- Review QR generator with PNG download; no incentives, gating or fake-review features.
+- Content drafts for Instagram, Facebook and Google Business Profile.
+- Explainable Growth score and website-based AI Visibility readiness checks.
+- Free report generation, consent-based lead capture and public report API.
+- PWA manifest, service worker, offline page and mobile-first responsive layout.
+- Cloudflare Pages Functions, D1 migration and server-side OpenAI-compatible provider adapter.
+- Minimal analytics events and a server-side in-memory rate limiter.
 
-</div>
+## Run locally
 
----
-
-## ⚠️ Upgrade to PRO
-
-<div align="center">
-
-### ✨ **ClawGuard PRO - Enterprise-Grade Security**
-
-| Feature | OSS (Free) | PRO ($14) |
-|---------|:----------:|:---------:|
-| 🔐 API Key Masking | ✅ | ✅ |
-| 🚨 Anomaly Detection | ✅ Terminal | ✅ Multi-channel |
-| 📊 Audit Logging | ❌ | ✅ SQLite |
-| 🛡️ PII Scrubbing | ❌ | ✅ Full |
-| 🌐 IP Whitelist/Blacklist | ❌ | ✅ |
-| 🔄 Auto Key Rotation | ❌ | ✅ |
-| 📧 Email/Webhook Alerts | ❌ | ✅ |
-| 🔒 Hardware-level Isolation | ❌ | ✅ |
-
-**[🚀 Get PRO Now - Only ¥99 ($14)](https://clawguard.dev/pro)**
-
-</div>
-
----
-
-## 中文
-
-### 🎯 什么是 ClawGuard OSS？
-
-ClawGuard OSS 是一个**开源的 AI API 安全网关**，专为保护你的 OpenAI API 密钥而设计。它提供：
-
-- 🔐 **API 密钥自动打码** - 防止密钥在日志中泄漏
-- 🚨 **异常流量实时告警** - 检测可疑的 API 使用模式
-- ⚡ **零配置透明转发** - 无需修改现有代码
-- 🎨 **炫酷终端界面** - 彩色 ASCII Logo + 实时流量可视化
-- 🚀 **高性能异步架构** - 基于 FastAPI + httpx
-
-### 📸 效果展示
-
-```
-   ██████╗██╗      █████╗ ██╗    ██╗ ██████╗ ██╗   ██╗ █████╗ ██████╗ ██████╗ 
-  ██╔════╝██║     ██╔══██╗██║    ██║██╔════╝ ██║   ██║██╔══██╗██╔══██╗██╔══██╗
-  ██║     ██║     ███████║██║ █╗ ██║██║  ███╗██║   ██║███████║██████╔╝██║  ██║
-  ██║     ██║     ██╔══██║██║███╗██║██║   ██║██║   ██║██╔══██║██╔══██╗██║  ██║
-  ╚██████╗███████╗██║  ██║╚███╔███╔╝╚██████╔╝╚██████╔╝██║  ██║██║  ██║██████╔╝
-   ╚═════╝╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝  ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ 
-                              OSS v2 - Security Enhanced Edition
-
-[22:30:45] ⚡ 流量劫持 | 127.0.0.1 → POST /v1/chat/completions | 状态: 🟢 200 | 1250ms | 🔐 Bearer sk-1234****cdef
-```
-
-### 🚀 快速开始
-
-#### 1. 安装依赖
+Requirements: Node.js 20+ and npm.
 
 ```bash
-pip install -r requirements-oss.txt
+npm install
+cp .env.example .env.local
+npm run dev
 ```
 
-#### 2. 设置环境变量
+Open the URL printed by Vite. With the default `VITE_USE_REMOTE_API=false`, choose **Try the demo** for Joe's Coffee or enter a website for a transparent local preview. The local preview does not claim to have fetched or verified the website; it only knows the URL and asks for missing details in Profile.
 
-**Linux/macOS:**
-```bash
-export TARGET_HOST=https://api.openai.com
-export PORT=8000
-```
-
-**Windows (PowerShell):**
-```powershell
-$env:TARGET_HOST="https://api.openai.com"
-$env:PORT="8000"
-```
-
-#### 3. 启动服务
+Quality checks:
 
 ```bash
-python clawguard_oss.py
+npm run typecheck
+npm run lint
+npm run build
 ```
 
-#### 4. 使用代理
+## Real website analysis and AI
 
-将你的 API 请求指向 `http://localhost:8000`：
+Build with `VITE_USE_REMOTE_API=true` to use the Pages Functions endpoints:
 
-```python
-import openai
-
-openai.api_base = "http://localhost:8000/v1"
-openai.api_key = "sk-your-api-key"
-
-response = openai.ChatCompletion.create(
-    model="gpt-4",
-    messages=[{"role": "user", "content": "Hello!"}]
-)
+```env
+VITE_USE_REMOTE_API=true
+VITE_API_BASE_URL=
+VITE_MULTIHUB_GEO_URL=https://your-multihub-service-page.example
 ```
 
-### 🛡️ 安全功能
+The browser never receives `AI_API_KEY`. Configure the server variables in Cloudflare Pages runtime settings:
 
-#### 1. API 密钥自动打码
-
-```
-原始: Bearer sk-1234567890abcdef1234567890abcdef
-打码: Bearer sk-1234****cdef
-```
-
-#### 2. 异常流量告警
-
-当检测到 5 分钟内同一 IP 失败 10 次时，自动触发告警：
-
-```
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-🚨 安全告警：检测到异常流量模式
-   来源 IP: 192.168.1.100
-   失败次数: 12 次（5分钟内）
-   最后状态: 401
-   可能原因: API 密钥失效、被盗用或恶意扫描
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+```text
+AI_PROVIDER=openai-compatible
+AI_API_KEY=<secret>
+AI_BASE_URL=https://api.openai.com/v1
+AI_MODEL=<model-name>
+MULTIHUB_GEO_URL=https://your-multihub-service-page.example
 ```
 
-#### 3. HTTPS 安全提醒
+Any OpenAI-compatible endpoint can be used by changing `AI_BASE_URL` and `AI_MODEL`. If no server AI provider is configured, the app returns a clear configuration error and the client can still use its local rule-based assistant.
 
-如果目标主机使用 HTTP 协议，启动时会显示醒目警告。
+## Cloudflare Pages deployment
 
-### 📚 文档
+1. Create a Pages project named `localbiz-copilot` and connect this repository.
+2. Set the build command to `npm run build` and the output directory to `dist`.
+3. Set the build-time `VITE_*` variables from `.env.example`.
+4. Create a D1 database and replace `REPLACE_WITH_D1_DATABASE_ID` in `wrangler.toml`.
+5. Apply the migration:
 
-- [安全使用指南](SECURITY_GUIDE_OSS.md) - 完整的安全最佳实践
-- [配置示例](.env.oss.example) - 环境变量配置模板
+   ```bash
+   npx wrangler d1 migrations apply localbiz-copilot --remote
+   ```
 
-### 🤝 贡献
+6. Add `DB` as the D1 binding in Pages Functions and add the server variables listed above. Store `AI_API_KEY` as a secret.
+7. Deploy with the Pages Git integration or:
 
-欢迎提交 Issue 和 Pull Request！
+   ```bash
+   npm run build
+   npx wrangler pages deploy dist --project-name localbiz-copilot
+   ```
 
-### 📄 开源协议
+The independent product can then use its own `*.pages.dev` URL. Do not point it at the MultiHub domain. Complete deployment prerequisites are listed in `HUMAN_ACTIONS.md`.
 
-MIT License - 详见 [LICENSE](LICENSE)
+## PWA and Android
 
-### 💎 升级到 PRO 版
+The app includes a manifest, standalone display mode, icons, service-worker caching and an offline fallback. On mobile Chrome, open the deployed Pages URL and choose **Install app** or **Add to Home screen**. See `MOBILE.md` for the Android wrapper decision and commands.
 
-想要获得企业级安全保护？
+## Routes and data
 
-- 🔐 私钥物理隔离
-- 📊 SQLite 审计日志
-- 🛡️ PII 自动脱敏
-- 🚨 智能异常检测
-- 📧 邮件/Webhook 告警
-- 🌐 IP 白名单/黑名单
-- 🔄 自动密钥轮换
+Client views are switched inside the SPA: Today, Reviews, Content, Growth, Profile and Report. Public reports use `/report/:slug` when D1 is configured. Anonymous browser state is stored locally until the user chooses an action that needs a server, such as website analysis, report saving or email capture.
 
-**[立即购买 PRO 版 - 仅需 ¥99 ($14)](https://clawguard.dev/pro)**
+The D1 schema is in `migrations/0001_init.sql`. It covers business profiles, users, tasks, content history, scores, reports, leads, consent and events.
 
----
+## Honest limitations in V1
 
-## English
-
-### 🎯 What is ClawGuard OSS?
-
-ClawGuard OSS is an **open-source AI API security gateway** designed to protect your OpenAI API keys. It provides:
-
-- 🔐 **Automatic API Key Masking** - Prevent key leakage in logs
-- 🚨 **Real-time Anomaly Alerts** - Detect suspicious API usage patterns
-- ⚡ **Zero-config Transparent Proxy** - No code changes required
-- 🎨 **Stunning Terminal UI** - Colorful ASCII logo + real-time traffic visualization
-- 🚀 **High-performance Async Architecture** - Built on FastAPI + httpx
-
-### 🚀 Quick Start
-
-#### 1. Install Dependencies
-
-```bash
-pip install -r requirements-oss.txt
-```
-
-#### 2. Set Environment Variables
-
-**Linux/macOS:**
-```bash
-export TARGET_HOST=https://api.openai.com
-export PORT=8000
-```
-
-**Windows (PowerShell):**
-```powershell
-$env:TARGET_HOST="https://api.openai.com"
-$env:PORT="8000"
-```
-
-#### 3. Start the Service
-
-```bash
-python clawguard_oss.py
-```
-
-#### 4. Use the Proxy
-
-Point your API requests to `http://localhost:8000`:
-
-```python
-import openai
-
-openai.api_base = "http://localhost:8000/v1"
-openai.api_key = "sk-your-api-key"
-
-response = openai.ChatCompletion.create(
-    model="gpt-4",
-    messages=[{"role": "user", "content": "Hello!"}]
-)
-```
-
-### 🛡️ Security Features
-
-#### 1. Automatic API Key Masking
-
-```
-Original: Bearer sk-1234567890abcdef1234567890abcdef
-Masked:   Bearer sk-1234****cdef
-```
-
-#### 2. Anomaly Detection Alerts
-
-Automatically triggers when detecting 10 failures from the same IP within 5 minutes:
-
-```
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-🚨 Security Alert: Anomalous Traffic Pattern Detected
-   Source IP: 192.168.1.100
-   Failed Requests: 12 (within 5 minutes)
-   Last Status: 401
-   Possible Cause: Invalid key, stolen key, or malicious scanning
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-```
-
-#### 3. HTTPS Security Reminder
-
-Displays a prominent warning if the target host uses HTTP protocol.
-
-### 📚 Documentation
-
-- [Security Guide](SECURITY_GUIDE_OSS.md) - Complete security best practices
-- [Configuration Example](.env.oss.example) - Environment variable template
-
-### 🤝 Contributing
-
-Issues and Pull Requests are welcome!
-
-### 📄 License
-
-MIT License - see [LICENSE](LICENSE)
-
-### 💎 Upgrade to PRO
-
-Want enterprise-grade security?
-
-- 🔐 Hardware-level Key Isolation
-- 📊 SQLite Audit Logging
-- 🛡️ Automatic PII Scrubbing
-- 🚨 Intelligent Anomaly Detection
-- 📧 Email/Webhook Alerts
-- 🌐 IP Whitelist/Blacklist
-- 🔄 Automatic Key Rotation
-
-**[Get PRO Now - Only ¥99 ($14)](https://clawguard.dev/pro)**
-
----
-
-<div align="center">
-
-**Made with ❤️ by Independent Developers**
-
-⭐ Star us on GitHub if you find this useful!
-
-</div>
+- Website analysis is intentionally limited to the homepage plus up to three same-origin useful pages. It does not claim to test ChatGPT, Gemini or Perplexity mentions.
+- Reviews and Content scores are `Not enough data` for a fresh real workspace until local activity is recorded. Only Demo Mode uses the requested simulated scores.
+- Public reports require D1. Without remote mode, a report is clearly labelled as a browser-local preview.
+- The V1 lead endpoint records a consented email; transactional email delivery is intentionally not included until an email provider is chosen and configured.
+- No automatic Meta/Google publishing, bulk messaging, scraping of reviews, billing, team accounts or account farming is included.
+- Rate limiting is best-effort in-memory protection on the edge isolate; production traffic should add a Cloudflare WAF/rate-limit rule.

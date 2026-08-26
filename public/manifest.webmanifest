@@ -1,0 +1,14 @@
+{
+  "name": "LocalBiz Copilot",
+  "short_name": "LocalBiz",
+  "description": "A simple daily marketing assistant for independent local businesses.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f8faf8",
+  "theme_color": "#163b36",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,21 @@
+import { useEffect, useRef, useState } from 'react';
+import { ArrowRightIcon, CheckIcon, GlobeIcon, SparkIcon } from '../components/Icons';
+import { Logo } from '../components/Logo';
+
+export function LandingPage({ onAnalyze, onDemo, isLoading, error, onViewed }: { onAnalyze: (url: string) => void; onDemo: () => void; isLoading: boolean; error: string; onViewed?: () => void }) {
+  const [url, setUrl] = useState('');
+  const viewed = useRef(false);
+  useEffect(() => { if (!viewed.current) { viewed.current = true; onViewed?.(); } }, [onViewed]);
+  return <div className="landing-page">
+    <header className="landing-nav"><Logo /><div className="landing-nav-right"><span className="quiet-label">Free for independent businesses</span><button className="text-button" onClick={onDemo}>Try the demo <ArrowRightIcon size={15} /></button></div></header>
+    <section className="landing-hero">
+      <div className="hero-copy"><div className="pill"><span className="pill-dot" /> Made for the people behind the business</div><h1>Make your next<br /><em>3 minutes</em> count.</h1><p className="hero-lead">A simple daily marketing assistant for local businesses. Know what to post, what to fix and how to stay visible—without becoming a marketer.</p>
+        <form className="website-form" onSubmit={(event) => { event.preventDefault(); if (url.trim()) onAnalyze(url); }}><div className="url-field"><GlobeIcon size={19} /><input value={url} onChange={(event) => setUrl(event.target.value)} placeholder="Enter your business website" aria-label="Business website" type="url" /><button className="button button-dark" disabled={isLoading || !url.trim()}>{isLoading ? 'Analyzing…' : 'Analyze my business'}<ArrowRightIcon size={17} /></button></div>{error && <p className="form-error">{error}</p>}<p className="form-note"><CheckIcon size={14} /> No account needed to get started</p></form>
+      </div>
+      <div className="hero-art" aria-label="Preview of the daily workspace"><div className="float-note note-one"><span className="note-check"><CheckIcon size={14} /></span><span><b>Today’s win</b><small>One small step done</small></span></div><div className="phone-preview"><div className="phone-top"><span>9:41</span><span>● ◒</span></div><div className="mini-greeting">Good morning <span>☀</span><strong>Joe</strong></div><div className="mini-score"><div><span>YOUR GROWTH SCORE</span><b>68 <small>/ 100</small></b></div><div className="mini-ring"><i /></div></div><div className="mini-title">3 things to do today</div><div className="mini-task"><div className="mini-task-icon peach">↗</div><div><b>Reply to a review</b><small>Build trust with a quick reply</small></div><span>›</span></div><div className="mini-task"><div className="mini-task-icon lilac">✦</div><div><b>Share something today</b><small>Keep your business visible</small></div><span>›</span></div><div className="mini-task"><div className="mini-task-icon mint">↗</div><div><b>Answer a common question</b><small>Make your website clearer</small></div><span>›</span></div><div className="mini-bottom"><span>⌂</span><span>☆</span><span>✎</span><span>↗</span><span>○</span></div></div><div className="float-note note-two"><SparkIcon size={15} /><span>Made for busy owners</span></div></div>
+    </section>
+    <section className="landing-proof"><div><span className="proof-number">3</span><span>practical actions<br />every day</span></div><div><span className="proof-number">0</span><span>marketing jargon<br />to learn</span></div><div><span className="proof-number">100%</span><span>focused on your<br />business</span></div></section>
+    <section className="landing-lower"><span className="section-label">HOW IT WORKS</span><h2>Less wondering.<br />More doing.</h2><div className="landing-steps"><div><span>01</span><strong>Tell us where you are</strong><p>Just your website. We’ll find the useful details.</p></div><div><span>02</span><strong>Get your daily three</strong><p>Small, specific actions that fit into a busy day.</p></div><div><span>03</span><strong>Watch your presence grow</strong><p>See what’s working and where you can improve.</p></div></div></section>
+    <footer className="landing-footer"><Logo /><span>Free daily guidance for independent businesses.</span><span>© 2026 LocalBiz Copilot</span></footer>
+  </div>;
+}
