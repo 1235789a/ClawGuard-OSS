@@ -1,9 +1,0 @@
-import type { AnalysisResult } from '../types';
-import { ArrowRightIcon, CheckIcon, EditIcon, GlobeIcon } from '../components/Icons';
-import { Logo } from '../components/Logo';
-
-export function BusinessFoundPage({ result, onStart, onEdit }: { result: AnalysisResult; onStart: () => void; onEdit: () => void }) {
-  const { profile } = result;
-  const verified = profile.analysisMode === 'verified';
-  return <div className="found-page"><header><Logo /><span className={`mode-chip ${verified ? 'verified' : 'local-preview'}`}>{verified ? 'Website analyzed' : 'Local preview'}</span></header><main className="found-main"><div className="found-check"><CheckIcon size={22} /></div><div className="eyebrow">WE FOUND YOUR BUSINESS</div><h1>{profile.businessName}</h1><div className="found-meta"><span><GlobeIcon size={15} /> {profile.industry}</span>{profile.location && <span>• {profile.location}</span>}</div>{!verified && <div className="preview-warning">This local preview used your website address only. Connect the server analyzer to verify website details.</div>}<div className="found-details"><div><span>WHAT YOU DO</span><strong>{profile.description || 'Not enough data yet'}</strong></div><div><span>KEY OFFERINGS</span><strong>{profile.productsServices.length ? profile.productsServices.join(' · ') : 'Add them in your profile'}</strong></div><div><span>CONTACT SIGNALS</span><strong>{profile.contactLinks.length ? `${profile.contactLinks.length} found` : 'Not enough data'}</strong></div></div><button className="button button-dark found-start" onClick={onStart}>Start improving <ArrowRightIcon size={17} /></button><button className="text-button" onClick={onEdit}><EditIcon size={15} /> Edit business details</button></main><footer>LocalBiz Copilot gives you practical daily guidance—no account required to explore.</footer></div>;
-}

@@ -1,0 +1,108 @@
+---
+import ButtonGroup from '@components/homepage/ButtonGroup.astro';
+import Features from '@components/homepage/Features.astro';
+
+const supportedChecks = [
+  'Archive History',
+  'Block List Check',
+  'Carbon Footprint',
+  'Cookies',
+  'DNS Server',
+  'DNS Records',
+  'DNSSEC',
+  'Site Features',
+  'Firewall Types',
+  'Get IP Address',
+  'Headers',
+  'HSTS',
+  'HTTP Security',
+  'Linked Pages',
+  'Mail Config',
+  'Open Ports',
+  'Quality Check',
+  'Global Rank',
+  'Redirects',
+  'Robots.txt',
+  'Screenshot',
+  'Security.txt',
+  'Sitemap',
+  'Social Tags',
+  'SSL Certificate',
+  'Uptime Status',
+  'Tech Stack',
+  'Known Threats',
+  'TLS Version',
+  'Trace Route',
+  'TXT Records',
+  'Whois Lookup',
+];
+
+const links = [
+  {
+    title: 'Improve Website Discovery',
+    url: 'https://multhub.top',
+    icon: 'rocket',
+    isCta: true,
+  },
+  {
+    title: 'Join Our Business Group',
+    url: import.meta.env.PUBLIC_FACEBOOK_GROUP_URL || 'https://multhub.top',
+    icon: 'users',
+    isCta: false,
+  },
+  {
+    title: 'Use the API',
+    url: '/web-check-api',
+    icon: 'code',
+    isCta: false,
+  },
+];
+---
+
+<div class="about-section">
+  <div class="features-wrap">
+    <h4>One check. Clear next steps.</h4>
+    <p class="what">
+      Review more than <span>30 technical and trust signals</span>
+      that affect how customers and discovery systems understand your website.
+    </p>
+  </div>
+  <hr />
+  <Features supportedChecks={supportedChecks} />
+  <ButtonGroup links={links} />
+</div>
+
+<style lang="scss">
+  .about-section {
+    width: 80vw;
+    margin: 0 auto;
+  }
+  .features-wrap {
+    width: 80vw;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  h4 {
+    text-transform: capitalize;
+    font-size: 1.8rem;
+    text-align: center;
+    background: linear-gradient(90deg, var(--text-color), var(--primary));
+    background-clip: text;
+    text-fill-color: transparent;
+    color: transparent;
+  }
+  .what {
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    span {
+      color: var(--primary);
+      font-style: italic;
+    }
+  }
+  hr {
+    width: 3rem;
+    margin: 3rem auto;
+    color: var(--primary);
+  }
+</style>
