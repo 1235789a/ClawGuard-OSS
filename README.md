@@ -17,16 +17,12 @@ yarn dev
 
 ## Brand and contact configuration
 
-Copy `.env.sample` to `.env` and set:
-
 ```dotenv
 PUBLIC_MULTIHUB_URL=https://multhub.top
-PUBLIC_WHATSAPP_URL=https://wa.me/COUNTRY_CODE_AND_NUMBER
-PUBLIC_FACEBOOK_GROUP_URL=https://www.facebook.com/groups/YOUR_GROUP
+PUBLIC_WHATSAPP_URL=https://wa.me/8615863789235
+PUBLIC_FACEBOOK_GROUP_URL=https://www.facebook.com/share/g/18LzkjLLwE/
 SITE_URL=https://your-public-tool-domain.example
 ```
-
-Empty contact values are hidden or fall back to the MultiHub website, so no fake details are published.
 
 ## Deployment
 
